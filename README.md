@@ -33,10 +33,11 @@ prompts, so they can be invoked directly in this project:
 | [kai](.claude/agents/kai.md) | Audience and growth — ICP, content systems, community, campaigns. |
 | [maya](.claude/agents/maya.md) | Operations and customer success — onboarding, support, incident learning. |
 
-These four form one "community operating system" squad: each seat grounds its
-answers in a specific set of numbered canon documents and refuses to answer
-outside that grounding rather than guessing. **Note:** the canon documents
-they cite (00–15) don't exist in this repo yet — until they're added
-somewhere these agents can read, each seat will correctly refuse most
-questions rather than fabricate an answer. That's the intended behavior, not
-a bug.
+These four form one "community operating system" squad, each owning a
+distinct domain and each with one thing it refuses to do: atlas won't make a
+decision that belongs to the owner, canon won't present a guess as settled
+fact, kai won't claim a growth number with no measurement behind it, and maya
+won't pin a systemic failure on a person. They reason from whatever project
+context is actually available to them (via Read/Grep/Glob) plus the lens and
+checklist baked into each prompt — they don't cite or depend on any canon
+documents, since this repo doesn't have any.
