@@ -41,3 +41,16 @@ won't pin a systemic failure on a person. They reason from whatever project
 context is actually available to them (via Read/Grep/Glob) plus the lens and
 checklist baked into each prompt — they don't cite or depend on any canon
 documents, since this repo doesn't have any.
+
+Routing across the squad — which seat handles a question, and who owns
+reconciling the answer when a question spans more than one seat — is written
+down separately in [`.claude/SQUAD-ROUTING.md`](.claude/SQUAD-ROUTING.md)
+rather than left for each seat to improvise. Short version: atlas is always
+the merge owner; the other three defer out-of-lane questions to the seat
+(or to atlas) that actually owns them.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Prompts adapted from third-party sources keep
+their own attribution in their **Credit** line; the license covers this
+repo's original content.

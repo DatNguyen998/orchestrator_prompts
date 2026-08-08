@@ -9,10 +9,10 @@
 - Explicit clarifying-question set (asked as one batch) covering granularity, team count, single- vs multi-team membership, and whether a catch-all/misc team is allowed — with stated defaults if the user opts out of answering.
 - A rule of thumb for picking team count from inventory size when the user defers to the assistant.
 - Concrete grouping constraints: no singleton teams unless justified, no team absorbing >~40% of agents unchecked.
-- A mandatory integrity check before output: every input agent must appear in the result, none invented, none silently dropped or renamed.
+- A mandatory integrity check before output, run as an independent audit pass rather than by the same breath that produced the grouping: every input agent must appear in the result, none invented, none silently dropped or renamed.
 - Two optional output modes in addition to the original per-team markdown fences: a single summary table, and a JSON structure for downstream tooling.
 - Chunking rule clarified: split only on team boundaries, and label each chunk ("Response 2 of 3 — Teams: …").
-- An iteration step: after the first pass, invites corrections and re-runs the integrity check on every revision.
+- An iteration step: after the first pass, invites corrections and re-runs the integrity check on every revision — capped at 3 rounds so revision can't loop indefinitely.
 - Defined edge-case handling: empty input, a single agent, one dominant shared purpose, ambiguous/unlabeled agents.
 - Optional closing offer (off by default) to propose a lightweight orchestrator/router description per team, inspired by this repo's sibling "route" category.
 
@@ -55,7 +55,7 @@ Cluster agents by shared purpose or function, using descriptions/tags when avail
 - Name each team with a short, descriptive 2-4 word title reflecting the shared function — not the literal name of a member agent.
 
 5. INTEGRITY CHECK (mandatory, before you output anything)
-Verify silently before responding:
+Before checking, switch stance: review the grouping as a skeptical auditor seeing it for the first time, not as the author defending work you just did — a check run in the same breath as the work catches almost nothing. Then verify silently before responding:
 - Every agent from the normalized input table appears in the output at least once.
 - No agent name was altered, invented, or duplicated beyond what the membership rule authorizes.
 - The number of (team, agent) pairs matches expectations given the membership rule.
@@ -74,7 +74,7 @@ If the user explicitly asked for team descriptions in addition to names, add one
 If the full output would exceed a single response's practical length, split by whole teams only — never split one team's agent list across two responses. At the start of every chunked response, state which teams are included and how many more responses are coming, for example: "Response 2 of 3 - Teams: Productivity Partners, Research Assistants, Writing Crew." Keep team order stable across all chunks.
 
 8. ITERATION
-After delivering the first pass, invite feedback: ask if any agent should move teams, if a team should be renamed or split or merged, or if a different team count is wanted. Apply requested changes surgically to the affected teams only, and re-run the integrity check from step 5 after every revision.
+After delivering the first pass, invite feedback: ask if any agent should move teams, if a team should be renamed or split or merged, or if a different team count is wanted. Apply requested changes surgically to the affected teams only, and re-run the integrity check from step 5 after every revision. Cap revisions at 3 rounds — if the grouping is still unsettled after that, say so plainly, ship the current best version, and name what's still unresolved rather than looping indefinitely.
 
 9. EDGE CASES
 - Empty or missing inventory: ask the user to provide or upload it; never fabricate agents.
