@@ -5,6 +5,10 @@ domain: it collects the input it needs, asks any clarifying questions, applies a
 defined workflow, and produces output in a fixed format — routing or organizing
 work across the relevant skills/agents as needed.
 
+New here? [`GUIDE.md`](GUIDE.md) walks through how to actually use this repo —
+which files are copy-paste prompts vs. live agents, which one you probably want,
+and what to do when a seat refuses to answer you.
+
 ## Prompts
 
 | Prompt | Purpose |
