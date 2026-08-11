@@ -53,6 +53,26 @@ rather than left for each seat to improvise. Short version: atlas is always
 the merge owner; the other three defer out-of-lane questions to the seat
 (or to atlas) that actually owns them.
 
+## Skills (`skills/`)
+
+Prompts are text you paste; live agents are subagents this project loads
+automatically. **Skills** are the third kind of thing this orchestrator can
+reach for: portable Claude Code skill instructions, kept here so they still
+work even in a session where the skill itself isn't installed.
+
+| Skill | Purpose |
+| --- | --- |
+| [code-tutorial-writing](skills/code-tutorial-writing.md) | Dry, first-person, conversational voice for tutorials, guides, runbooks, and READMEs — used to write this repo's own [`GUIDE.md`](GUIDE.md). |
+
+**Using one:** if the skill is installed in your session, invoke it directly
+(`/skill-name`, or describe the task and let it trigger). If it isn't, open
+the matching file here and paste its "Skill instructions" block as a
+system/style prompt ahead of what you're writing — same result, no install.
+
+**Adding one:** create `skills/kebab-case-name.md` with a **Purpose** and
+**When to use** line, then the skill's full instructions in a fenced block so
+it's usable standalone. Add a row to the table above.
+
 ## License
 
 MIT — see [LICENSE](LICENSE). Prompts adapted from third-party sources keep

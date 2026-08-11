@@ -12,10 +12,10 @@ This repo is that prompt, written once, checked, and left somewhere you can find
 
 I'm sorry it took a whole repo to solve "stop losing your own prompts." It did.
 
-## Two ways to use anything in here
+## Three ways to use anything in here
 
-Everything in this repo is one of two things, and the difference matters more than
-it looks like it should.
+Everything in this repo is one of three things, and the difference matters more
+than it looks like it should.
 
 **A prompt** (anything under `prompts/`) is just text. Copy it, paste it into
 whatever chat window you have open — ChatGPT, Claude.ai, whatever — and it works.
@@ -25,8 +25,14 @@ Portable by design.
 anywhere. If you're working in this repo with Claude Code, it's already loaded.
 You call it by name and it answers. No copy, no paste, nothing to remember.
 
-Same idea, two different jobs. Pick based on where you're sitting, not on which one
-sounds fancier.
+**A skill** (anything under `skills/`) is Claude Code's own notion of a
+reusable capability — a voice, a workflow, a checklist. If it's installed in
+your session, you invoke it directly and never touch the file. If it isn't,
+the file holds the full instructions anyway, so you paste them in and get the
+same result. Belt and suspenders, on purpose.
+
+Same idea, three different jobs. Pick based on where you're sitting, not on which
+one sounds fancier.
 
 ## Which one are you?
 
@@ -52,6 +58,13 @@ one-line **Purpose** and a one-line **When to use**. Put the actual system promp
 in a fenced code block so the next person can copy-paste it without editing
 anything out. Add a row to the table in `README.md`. That's the whole process —
 it's supposed to be boring.
+
+**Case 4: you want to write something in a specific voice, like this guide.**
+Check [`skills/`](skills/) first — [`code-tutorial-writing`](skills/code-tutorial-writing.md)
+is what wrote this exact page. If your Claude Code session has the skill
+installed, just invoke it. If it doesn't, open the file and paste its
+instructions block in yourself. Either way you get the same voice, not a
+watered-down version because the install step didn't happen.
 
 ## What this won't do for you
 
