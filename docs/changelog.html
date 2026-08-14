@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changelog · orchestrator_prompts</title>
+<meta name="description" content="Version history for the orchestrator_prompts library: what changed, per release, and which prompts, agents, or skills it affects.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f6f5f2;
+    --bg-elevated: #ffffff;
+    --border: #e2ded6;
+    --text: #262220;
+    --text-dim: #6b6560;
+    --text-faint: #948d86;
+    --accent: #a8562f;
+    --accent-soft: #f2e3d8;
+    --added: #2f6b4f;
+    --added-bg: #e6f2ea;
+    --changed: #a8562f;
+    --changed-bg: #f7ead9;
+    --removed: #a63d4a;
+    --removed-bg: #f6e2e5;
+    --chip-bg: #efece6;
+    --chip-text: #55504a;
+    --link: #a8562f;
+    --code-bg: #efece6;
+    --shadow: 0 1px 2px rgba(38,34,32,0.05), 0 8px 24px -12px rgba(38,34,32,0.12);
+    --major: #a63d4a;
+    --minor: #a8562f;
+    --patch: #6b6560;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1815;
+      --bg-elevated: #242019;
+      --border: #37312a;
+      --text: #ece7e0;
+      --text-dim: #b3aca3;
+      --text-faint: #837c74;
+      --accent: #e2955f;
+      --accent-soft: #3a2c1f;
+      --added: #7fbf9c;
+      --added-bg: #1e2e26;
+      --changed: #e2955f;
+      --changed-bg: #332619;
+      --removed: #e0808c;
+      --removed-bg: #33212a;
+      --chip-bg: #2c2820;
+      --chip-text: #c9c2b8;
+      --link: #e2955f;
+      --code-bg: #2c2820;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+      --major: #e0808c;
+      --minor: #e2955f;
+      --patch: #b3aca3;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1815;
+    --bg-elevated: #242019;
+    --border: #37312a;
+    --text: #ece7e0;
+    --text-dim: #b3aca3;
+    --text-faint: #837c74;
+    --accent: #e2955f;
+    --accent-soft: #3a2c1f;
+    --added: #7fbf9c;
+    --added-bg: #1e2e26;
+    --changed: #e2955f;
+    --changed-bg: #332619;
+    --removed: #e0808c;
+    --removed-bg: #33212a;
+    --chip-bg: #2c2820;
+    --chip-text: #c9c2b8;
+    --link: #e2955f;
+    --code-bg: #2c2820;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    --major: #e0808c;
+    --minor: #e2955f;
+    --patch: #b3aca3;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    padding: 0 20px 80px;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .page {
+    max-width: 840px;
+    margin: 0 auto;
+  }
+
+  header.hero {
+    padding: 56px 0 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .kicker {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(28px, 4.5vw, 38px);
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .hero p {
+    color: var(--text-dim);
+    max-width: 60ch;
+    margin: 0 0 18px;
+    font-size: 15.5px;
+  }
+  .hero-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+  }
+  .hero-links a {
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    padding: 6px 12px;
+    border-radius: 7px;
+  }
+  .hero-links a:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin: 22px 0 0;
+    font-size: 12.5px;
+    color: var(--text-faint);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .dot.major { background: var(--major); }
+  .dot.minor { background: var(--minor); }
+  .dot.patch { background: var(--patch); }
+
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .release {
+    position: relative;
+    margin-bottom: 34px;
+  }
+  .release::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 22px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--minor);
+  }
+  .release.patch::before { border-color: var(--patch); }
+  .release.unreleased::before { border-color: var(--text-faint); border-style: dashed; }
+
+  .card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 4px;
+  }
+  .version-line {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .version {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .badge {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .date {
+    font-size: 13px;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+  .pr-tag {
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+  }
+  .pr-tag code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+
+  .section {
+    margin-top: 14px;
+  }
+  .section-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .section-label.added { color: var(--added); }
+  .section-label.changed { color: var(--changed); }
+  .section-label.removed { color: var(--removed); }
+
+  ul.change-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14.5px;
+  }
+  ul.change-list li {
+    margin-bottom: 7px;
+  }
+  ul.change-list li:last-child { margin-bottom: 0; }
+  ul.change-list code {
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .impacted {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+  }
+  .impacted-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 0 0 8px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .chip {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+  .impacted-note {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 520px) {
+    body { padding: 0 14px 60px; }
+    header.hero { padding: 36px 0 22px; }
+    .card { padding: 18px 16px 20px; }
+    .timeline { padding-left: 20px; }
+    .release::before { left: -20px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <p class="kicker">orchestrator_prompts</p>
+    <h1>Changelog</h1>
+    <p>
+      Every release in this repo's history — what was added or changed, and
+      which prompts, live agents, or skills it touches — so you know what to
+      re-read before you rely on something again.
+    </p>
+    <div class="hero-links">
+      <a href="../CHANGELOG.md">Raw CHANGELOG.md</a>
+      <a href="../README.md">README</a>
+      <a href="../GUIDE.md">GUIDE.md</a>
+    </div>
+    <div class="legend">
+      <span><i class="dot minor"></i> Minor — new prompt / agent / skill</span>
+      <span><i class="dot patch"></i> Patch — rename / fix / docs-only</span>
+      <span><i class="dot major"></i> Major — breaking change</span>
+    </div>
+  </header>
+
+  <div class="timeline">
+
+    <article class="release unreleased">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">Unreleased</span>
+          </div>
+        </div>
+        <p class="impacted-note" style="margin-top:6px;">Nothing queued right now — new work lands here before it's tagged.</p>
+      </div>
+    </article>
+
+    <article class="release minor">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.6.0</span>
+            <span class="badge">minor</span>
+          </div>
+          <span class="date">2026-08-14</span>
+        </div>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li><code>CHANGELOG.md</code> — versioned history of the repo, Keep a Changelog format.</li>
+            <li><code>docs/changelog.html</code> — this page: a browsable view of the same history.</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">CHANGELOG.md</span>
+            <span class="chip">docs/changelog.html</span>
+          </div>
+          <p class="impacted-note">Docs only — no prompt, agent, or skill content changed.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="release minor">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.5.0</span>
+            <span class="badge">minor</span>
+          </div>
+          <span class="date">2026-08-11</span>
+        </div>
+        <p class="pr-tag">Merged as <code>PR #5</code></p>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li><code>skills/</code> — a third content category alongside <code>prompts/</code> and <code>.claude/agents/</code>, for portable skill instructions.</li>
+            <li><code>skills/code-tutorial-writing.md</code> — dry, first-person, conversational voice for tutorials/guides/runbooks/READMEs.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <p class="section-label changed">Changed</p>
+          <ul class="change-list">
+            <li><code>README.md</code> — new "Skills" section (table + how to use/add one).</li>
+            <li><code>GUIDE.md</code> — reframed "two ways to use this repo" into three, plus a fourth reader case for writing in this voice.</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">skills/code-tutorial-writing.md</span>
+            <span class="chip">README.md</span>
+            <span class="chip">GUIDE.md</span>
+          </div>
+          <p class="impacted-note">No existing prompt or agent behavior changed.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="release minor">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.4.0</span>
+            <span class="badge">minor</span>
+          </div>
+          <span class="date">2026-08-10</span>
+        </div>
+        <p class="pr-tag">Merged as <code>PR #4</code></p>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li><code>GUIDE.md</code> — conversational, second-person how-to-use-this-repo doc. Covers the prompt-files-vs-live-agents distinction, three reader cases, a "what this won't do" section, and a symptom → meaning → fix table for seat refusals.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <p class="section-label changed">Changed</p>
+          <ul class="change-list">
+            <li><code>README.md</code> — one linking line to <code>GUIDE.md</code>; existing voice untouched.</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">GUIDE.md</span>
+            <span class="chip">README.md</span>
+          </div>
+          <p class="impacted-note">No prompt or agent files changed.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="release patch">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.3.1</span>
+            <span class="badge">patch</span>
+          </div>
+          <span class="date">2026-08-10</span>
+        </div>
+        <div class="section">
+          <p class="section-label changed">Changed</p>
+          <ul class="change-list">
+            <li>Renamed <code>.claude/agents/maya.md</code> → <code>.claude/agents/shinsho.md</code> (seat identity update; operations &amp; customer-success responsibilities unchanged).</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">.claude/agents/shinsho.md</span>
+            <span class="chip">.claude/SQUAD-ROUTING.md (name refs)</span>
+            <span class="chip">README.md (name refs)</span>
+          </div>
+          <p class="impacted-note">Anything that referenced the seat as "maya" needs re-checking against the new name.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="release minor">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.3.0</span>
+            <span class="badge">minor</span>
+          </div>
+          <span class="date">2026-08-08</span>
+        </div>
+        <p class="pr-tag">Merged as <code>PR #3</code> (2026-08-09)</p>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li><code>.claude/SQUAD-ROUTING.md</code> — the missing task graph for the squad. Single-domain questions go straight to the owning seat; cross-domain questions route as a diamond with <strong>atlas fixed as the merge owner</strong>.</li>
+            <li><code>LICENSE</code> — MIT, matching the source repo's own licensing practice.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <p class="section-label changed">Changed</p>
+          <ul class="change-list">
+            <li><code>.claude/agents/atlas.md</code> — wired in explicit merge-owner responsibility.</li>
+            <li><code>.claude/agents/canon.md</code>, <code>kai.md</code>, <code>maya.md</code> — added an "out of lane, defer to X" line each.</li>
+            <li><code>prompts/ai-squad-director-v2.md</code> — integrity check (step 5) reframed as a fresh-eyes/auditor pass instead of self-graded; iteration loop (step 8) capped at 3 rounds.</li>
+            <li><code>README.md</code> — added a License section; Live agents section now points to <code>SQUAD-ROUTING.md</code>.</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">atlas</span>
+            <span class="chip">canon</span>
+            <span class="chip">kai</span>
+            <span class="chip">maya</span>
+            <span class="chip">prompts/ai-squad-director-v2.md</span>
+            <span class="chip">.claude/SQUAD-ROUTING.md</span>
+            <span class="chip">LICENSE</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="release minor">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.2.0</span>
+            <span class="badge">minor</span>
+          </div>
+          <span class="date">2026-08-07</span>
+        </div>
+        <p class="pr-tag">Merged as <code>PR #2</code></p>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li>Community-OS agent squad under <code>.claude/agents/</code>: <strong>atlas</strong> (chief of staff), <strong>canon</strong> (knowledge &amp; memory), <strong>kai</strong> (audience &amp; growth), <strong>maya</strong> (operations &amp; customer success) — each a real Claude Code subagent with Read/Grep/Glob access, keeping its original lens, checklist, and refusal clause verbatim.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <p class="section-label changed">Changed</p>
+          <ul class="change-list">
+            <li>Dropped the numbered-canon-document grounding/citation requirement (docs 00–15, which don't exist in this repo) from all four seats — it made every seat refuse almost everything. Refusal rules rewritten to keep intent without the dependency.</li>
+            <li><code>README.md</code> — documents the squad; Live agents section describes what each seat refuses.</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">atlas</span>
+            <span class="chip">canon</span>
+            <span class="chip">kai</span>
+            <span class="chip">maya</span>
+            <span class="chip">README.md</span>
+          </div>
+          <p class="impacted-note">Creation and a same-release correction to their refusal/grounding rules.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="release minor">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.1.0</span>
+            <span class="badge">minor</span>
+          </div>
+          <span class="date">2026-08-05</span>
+        </div>
+        <p class="pr-tag">Merged as <code>PR #1</code></p>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li>Repository scaffold — <code>README.md</code> describing purpose and how to add a new orchestrator prompt.</li>
+            <li><code>prompts/ai-squad-director.md</code> — baseline AI Squad Director prompt: groups a list of AI agents/assistants into logical teams by shared purpose, with configurable team granularity.</li>
+            <li><code>prompts/ai-squad-director-v2.md</code> — enhanced version (builds on v1, itself sourced from <code>danielrosehill/AI-Orchestration-System-Prompts</code>): description/tag-aware clustering, clarifying-question batch, team-count heuristic, grouping constraints, mandatory integrity check, table/JSON output modes, chunking + iteration loop, edge-case handling, optional orchestrator-layer proposal.</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">prompts/ai-squad-director.md</span>
+            <span class="chip">prompts/ai-squad-director-v2.md</span>
+          </div>
+          <p class="impacted-note">New prompts only — no agents existed yet.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="release patch">
+      <div class="card">
+        <div class="card-head">
+          <div class="version-line">
+            <span class="version">0.0.1</span>
+            <span class="badge">patch</span>
+          </div>
+          <span class="date">2026-08-05</span>
+        </div>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li>Initial commit — empty repository scaffold with a one-line <code>README.md</code>.</li>
+          </ul>
+        </div>
+        <div class="impacted">
+          <p class="impacted-label">Impacted</p>
+          <div class="chips">
+            <span class="chip">README.md</span>
+          </div>
+          <p class="impacted-note">Repo initialization only.</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <footer>
+    Generated from <a href="../CHANGELOG.md">CHANGELOG.md</a> — keep the two in sync when adding a release.
+  </footer>
+
+</div>
+</body>
+</html>
