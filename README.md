@@ -9,6 +9,11 @@ New here? [`GUIDE.md`](GUIDE.md) walks through how to actually use this repo —
 which files are copy-paste prompts vs. live agents, which one you probably want,
 and what to do when a seat refuses to answer you.
 
+Wondering what changed and what it affects? See [`CHANGELOG.md`](CHANGELOG.md)
+(or the browsable [`docs/changelog.html`](docs/changelog.html) view) for a
+per-version breakdown of what was added or changed and which prompts, agents,
+or skills each release touches.
+
 ## Prompts
 
 | Prompt | Purpose |
