@@ -17,6 +17,23 @@ A rendered, browsable view of this file lives at
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-08-17
+
+### Removed
+- `LICENSE` (MIT) — removed. It was added in `0.3.0` by matching "the source
+  repo's own licensing practice," not by an actual decision to open-source
+  this content; the author confirmed that was never the intent.
+
+### Changed
+- `README.md`: License section now states no license is granted and all
+  rights are reserved, instead of pointing to the removed MIT file.
+
+**Impacted:** repo-wide licensing status — this content is no longer
+under any open-source license. `LICENSE` (deleted), `README.md`. Prompt
+files with their own third-party **Credit** lines are unaffected.
+
+---
+
 ## [0.6.0] - 2026-08-14
 
 ### Added
@@ -181,7 +198,8 @@ _Merged as PR #1._
 
 **Impacted:** repo initialization only.
 
-[Unreleased]: https://github.com/DatNguyen998/orchestrator_prompts/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/DatNguyen998/orchestrator_prompts/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/DatNguyen998/orchestrator_prompts/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/DatNguyen998/orchestrator_prompts/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/DatNguyen998/orchestrator_prompts/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/DatNguyen998/orchestrator_prompts/compare/v0.3.1...v0.4.0
