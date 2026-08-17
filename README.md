@@ -80,6 +80,7 @@ it's usable standalone. Add a row to the table above.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Prompts adapted from third-party sources keep
-their own attribution in their **Credit** line; the license covers this
-repo's original content.
+No license is granted. All rights to this repo's original content are
+reserved by the author — see [`CHANGELOG.md`](CHANGELOG.md) `0.6.1` for why
+the earlier MIT license was removed. Prompts adapted from third-party
+sources keep their own attribution in their **Credit** line regardless.
