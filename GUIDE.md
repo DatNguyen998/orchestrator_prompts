@@ -44,13 +44,18 @@ choice. It'll ask you a few questions before it does anything — granularity, h
 many teams, whether an agent can live on two teams at once. Answer them, or tell it
 to use its judgment. It'll say out loud which defaults it picked if you do.
 
-**Case 2: you're in this repo, in Claude Code, and you want the four seats.**
+**Case 2: you're in this repo, in Claude Code, and you want the squad.**
 You'll know you're here because you're already talking to Claude Code inside this
-project. atlas, canon, kai, and maya are just there — no setup, no install. Talk to
+project. atlas, canon, eddark, and ran are just there — no setup, no install. Talk to
 whichever one owns what you're asking about, or just ask the room; atlas is the one
 that sorts out who answers what. That routing logic isn't a secret you have to
 learn — it's written down in [`.claude/SQUAD-ROUTING.md`](.claude/SQUAD-ROUTING.md)
 if you want to see the actual rule instead of trusting me.
+
+Once those four actually land on a decision, and the decision is "build
+something," `forge` is who does that — it's the one seat with real
+Write/Edit/Bash access. It doesn't get asked domain questions and it won't
+guess at a vague ask; it waits for atlas to hand it a specific brief.
 
 **Case 3: you want to add your own prompt to this library.**
 Drop a new file in `prompts/`, name it `kebab-case-like-this.md`. Give it a
@@ -70,17 +75,23 @@ watered-down version because the install step didn't happen.
 
 No jokes in this section. This is the part you actually need to trust.
 
-The four seats don't have any real documents backing them up right now. There's no
-shared knowledge base in this repo for them to check against. They reason from
-whatever's actually in the project plus the checklist built into their own prompt —
-nothing more. If you tell `canon` "we ratified this last quarter," it has no record
-of that happening, because nothing here recorded it. That's not the agent being
-difficult. There's genuinely nothing to check.
+The four decision seats (atlas, canon, eddark, ran) don't have any real documents
+backing them up right now. There's no shared knowledge base in this repo for them
+to check against. They reason from whatever's actually in the project plus the
+checklist built into their own prompt — nothing more. If you tell `canon` "we
+ratified this last quarter," it has no record of that happening, because nothing
+here recorded it. That's not the agent being difficult. There's genuinely nothing
+to check.
 
-None of these prompts or agents take irreversible action on their own. Nothing
+None of the four decision seats take irreversible action on their own. Nothing
 sends, publishes, or deletes anything by itself. `atlas` is specifically built to
 escalate real decisions instead of making them — that's not a limitation, that's
 the point of the seat.
+
+`forge` is the one exception, on purpose — it has real Write/Edit/Bash access
+because building things is its whole job. Even so, it won't deploy, publish,
+delete, or spend money without you confirming first, and it won't build from a
+vague brief instead of asking what you actually meant.
 
 The routing between seats is exactly what's written in `SQUAD-ROUTING.md`. It's not
 a smart, self-organizing thing that adapts on its own. If you want different

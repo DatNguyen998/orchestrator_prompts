@@ -34,24 +34,36 @@ prompts, so they can be invoked directly in this project:
 | --- | --- |
 | [atlas](.claude/agents/atlas.md) | Chief of staff — priorities, work graph, decisions, cadence, escalation. |
 | [canon](.claude/agents/canon.md) | Knowledge and memory — the canon graph, diagrams, conventions, provenance. |
-| [kai](.claude/agents/kai.md) | Audience and growth — ICP, content systems, community, campaigns. |
-| [maya](.claude/agents/maya.md) | Operations and customer success — onboarding, support, incident learning. |
+| [eddark](.claude/agents/eddark.md) | Audience and growth — ICP, content systems, community, campaigns. |
+| [ran](.claude/agents/ran.md) | Operations and customer success — onboarding, support, incident learning. |
+| [forge](.claude/agents/forge.md) | Build — turns a finalized brief into real working output: code, prototypes, demos. |
 
-These four form one "community operating system" squad, each owning a
+The first four form one "community operating system" squad, each owning a
 distinct domain and each with one thing it refuses to do: atlas won't make a
 decision that belongs to the owner, canon won't present a guess as settled
-fact, kai won't claim a growth number with no measurement behind it, and maya
-won't pin a systemic failure on a person. They reason from whatever project
-context is actually available to them (via Read/Grep/Glob) plus the lens and
-checklist baked into each prompt — they don't cite or depend on any canon
-documents, since this repo doesn't have any.
+fact, eddark won't claim a growth number with no measurement behind it, and
+ran won't pin a systemic failure on a person. They reason from whatever
+project context is actually available to them (via Read/Grep/Glob) plus the
+lens and checklist baked into each prompt — they don't cite or depend on any
+canon documents, since this repo doesn't have any.
 
-Routing across the squad — which seat handles a question, and who owns
-reconciling the answer when a question spans more than one seat — is written
+`forge` is a different kind of seat on purpose: it's the only one with real
+Write/Edit/Bash access, because it's the only one whose job is to actually
+build something rather than advise on it. It doesn't get consulted on
+decisions and doesn't answer domain questions — it only enters once atlas
+hands it a finalized, specific brief, and it refuses to guess at a vague one.
+It also never deploys, publishes, deletes, or spends money without a human
+confirming first — same principle as atlas's escalation rule, just placed at
+the build stage instead of the decision stage.
+
+Routing across the squad — which seat handles a question, who owns
+reconciling the answer when a question spans more than one seat, and how a
+finalized decision hands off to forge to actually get built — is written
 down separately in [`.claude/SQUAD-ROUTING.md`](.claude/SQUAD-ROUTING.md)
 rather than left for each seat to improvise. Short version: atlas is always
-the merge owner; the other three defer out-of-lane questions to the seat
-(or to atlas) that actually owns them.
+the merge owner on decisions; the other three defer out-of-lane questions to
+the seat (or to atlas) that actually owns them; forge only shows up after a
+decision is made.
 
 ## Skills (`skills/`)
 
