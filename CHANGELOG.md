@@ -17,6 +17,23 @@ A rendered, browsable view of this file lives at
 
 ## [Unreleased]
 
+### Added
+- `REVIEW.md`: repository-wide structural review, comparison with the official
+  OpenAI Agents SDK repository, and prioritized improvement roadmap.
+- `scripts/validate_repo.py` and `.github/workflows/validate.yml`: dependency-free
+  checks for local Markdown links, agent front matter/catalog consistency, and
+  stale live references to the former `maya` seat name. The validator also
+  confirms that each agent's body identity matches its front matter and that
+  the routing roster contains exactly the available agent files.
+
+### Fixed
+- Replaced stale `maya` references with `shinsho` in all active docs, routing,
+  and cross-seat agent instructions. Historical changelog entries retain the
+  names used by those releases.
+
+**Impacted:** repository documentation and routing consistency. Agent domain
+behavior is unchanged.
+
 ## [0.6.1] - 2026-08-17
 
 ### Removed

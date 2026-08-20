@@ -46,7 +46,7 @@ to use its judgment. It'll say out loud which defaults it picked if you do.
 
 **Case 2: you're in this repo, in Claude Code, and you want the four seats.**
 You'll know you're here because you're already talking to Claude Code inside this
-project. atlas, canon, kai, and maya are just there — no setup, no install. Talk to
+project. atlas, canon, kai, and shinsho are just there — no setup, no install. Talk to
 whichever one owns what you're asking about, or just ask the room; atlas is the one
 that sorts out who answers what. That routing logic isn't a secret you have to
 learn — it's written down in [`.claude/SQUAD-ROUTING.md`](.claude/SQUAD-ROUTING.md)

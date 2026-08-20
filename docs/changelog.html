@@ -351,7 +351,20 @@
             <span class="version">Unreleased</span>
           </div>
         </div>
-        <p class="impacted-note" style="margin-top:6px;">Nothing queued right now — new work lands here before it's tagged.</p>
+        <div class="section">
+          <p class="section-label added">Added</p>
+          <ul class="change-list">
+            <li><code>REVIEW.md</code>: repository-wide structural review, comparison with the official OpenAI Agents SDK repository, and prioritized improvement roadmap.</li>
+            <li><code>scripts/validate_repo.py</code> and <code>.github/workflows/validate.yml</code>: dependency-free checks for local Markdown links, agent front matter/catalog consistency, stale live references to the former <code>maya</code> seat name, body-identity parity, and exact routing-roster parity.</li>
+          </ul>
+        </div>
+        <div class="section">
+          <p class="section-label changed">Fixed</p>
+          <ul class="change-list">
+            <li>Replaced stale <code>maya</code> references with <code>shinsho</code> in all active docs, routing, and cross-seat agent instructions. Historical changelog entries retain the names used by those releases.</li>
+          </ul>
+        </div>
+        <p class="impacted-note"><strong>Impacted:</strong> repository documentation and routing consistency. Agent domain behavior is unchanged.</p>
       </div>
     </article>
 

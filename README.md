@@ -14,6 +14,10 @@ Wondering what changed and what it affects? See [`CHANGELOG.md`](CHANGELOG.md)
 per-version breakdown of what was added or changed and which prompts, agents,
 or skills each release touches.
 
+For a repository-wide architecture review, comparison with the official OpenAI
+Agents SDK repository, and a prioritized improvement roadmap, see
+[`REVIEW.md`](REVIEW.md).
+
 ## Prompts
 
 | Prompt | Purpose |
@@ -40,12 +44,12 @@ prompts, so they can be invoked directly in this project:
 | [atlas](.claude/agents/atlas.md) | Chief of staff — priorities, work graph, decisions, cadence, escalation. |
 | [canon](.claude/agents/canon.md) | Knowledge and memory — the canon graph, diagrams, conventions, provenance. |
 | [kai](.claude/agents/kai.md) | Audience and growth — ICP, content systems, community, campaigns. |
-| [maya](.claude/agents/maya.md) | Operations and customer success — onboarding, support, incident learning. |
+| [shinsho](.claude/agents/shinsho.md) | Operations and customer success — onboarding, support, incident learning. |
 
 These four form one "community operating system" squad, each owning a
 distinct domain and each with one thing it refuses to do: atlas won't make a
 decision that belongs to the owner, canon won't present a guess as settled
-fact, kai won't claim a growth number with no measurement behind it, and maya
+fact, kai won't claim a growth number with no measurement behind it, and shinsho
 won't pin a systemic failure on a person. They reason from whatever project
 context is actually available to them (via Read/Grep/Glob) plus the lens and
 checklist baked into each prompt — they don't cite or depend on any canon
