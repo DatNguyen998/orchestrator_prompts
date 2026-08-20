@@ -1,4 +1,4 @@
-# Squad Routing (task graph for atlas / canon / kai / maya)
+# Squad Routing (task graph for atlas / canon / kai / shinsho)
 
 How a question gets to the right seat, and — this is the part that was missing —
 who owns the merge when it touches more than one.
@@ -12,7 +12,7 @@ Ask the seat that owns it directly:
 | Priorities, work graph, decisions, cadence, escalation | atlas |
 | Canon graph, diagrams, conventions, recipes, provenance, capsules | canon |
 | ICP, content systems, community, campaigns, experiments | kai |
-| Onboarding, support, recurring operations, incident learning | maya |
+| Onboarding, support, recurring operations, incident learning | shinsho |
 
 ## Cross-domain questions — the diamond, not a free-for-all
 
@@ -25,7 +25,7 @@ flowchart LR
   Q[Question spans domains] --> A[atlas]
   Q --> C[canon]
   Q --> K[kai]
-  Q --> M[maya]
+  Q --> M[shinsho]
   A --> R[atlas reconciles]
   C --> R
   K --> R
